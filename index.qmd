@@ -1,11 +1,722 @@
 ---
-title: "psci3200-Chinese_investment_in _LatinAmerican_Energy"
+title: "Chinese Investments Pivot to the Green Technology Sector in Latin America post-2020"
+author: "Martin Zakoian"
+bibliography: References.bib
+format: 
+  html:
+    self-contained: true
+editor: 
+  markdown: 
+    wrap: 72
 ---
 
-This is a Quarto website.
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE, warning = FALSE, message = FALSE)
+library(dplyr)
+library(tidyr)
+library(readr)
+library(tidyverse)
+library(flextable)
+library(gt)
+library(knitr)
+library(kableExtra)
+library(modelsummary)
+library(ggplot2)
+library(ggrepel)
+options(repos = "https://cran.rstudio.com/")
 
-To learn more about Quarto websites visit <https://quarto.org/docs/websites>.
+investment_data_south_america <- read_csv("/Users/martinzakoian/Desktop/investment_data_south_america.csv")
+
+aligned_data <- investment_data_south_america %>%
+  fill(Country, .direction = "down") %>%
+  filter(!is.na(Sector))
+
+long_data <- aligned_data %>%
+  pivot_longer(
+    cols = starts_with("20"),
+    names_to = "Year",
+    values_to = "Investment"
+  )
+
+print(aligned_data) 
+
+```
+
+## **Introduction**
+
+The evolving dynamics of Chinese investments in Latin America illustrate
+a strategic pivot under the Belt and Road Initiative, aligning with
+Beijing's global ambitions and domestic economic priorities. While
+traditionally focused on sectors like agriculture and extractives, a
+post-2020 shift towards frontier technologies, particularly in
+information and communication technology (ICT) and renewable energies,
+is evident. This reorientation, highlighted in the @oxford2023 article,
+supports sustainable and high-tech industries, warranting a detailed
+investigation into its implications and scale.
+
+**State of Scholarly Knowledge**
+
+Extensive scholarly research on Chinese investments in Latin America has
+revealed both economic growth and geopolitical implications.
+@jenkins2015 offers foundational insights into how Chinese capital has
+spurred significant infrastructure and agricultural development.
+However, Jenkins also cautions against the resultant economic
+dependencies and trade imbalances, which often lead to an economic
+monoculture where Latin American economies become overly reliant on
+specific sectors, diminishing their economic diversification.
+
+@myers2024new delves into the geopolitical strategies behind these
+investments, and discuss how China uses its economic leverage as a tool
+of political influence. This reshapes regional power dynamics in ways
+that could potentially undermine U.S. interests, especially significant
+given the strategic shift towards sensitive sectors like ICT and
+renewable energies.
+
+A key piece, @zhang2019socioeconomic, identifies a notable pivot of
+Chinese investment in Latin America towards renewable energy sectors
+such as solar and wind power. Zhang’s work highlights this trend and
+introduces the emerging focus on sustainable investments. However, while
+his analysis captures the directional shift, it lacks a detailed,
+quantitative, sector-specific examination of investment flows post-2020.
+This omission is crucial, as understanding the magnitude and specificity
+of investments unveils much about China's strategic priorities and their
+long-term implications for regional development and sustainability.
+
+Furthermore, the @atlanticcouncil2021 report underscores the resilience
+of Latin American markets to Chinese investments, amidst shifting global
+dynamics. This resilience indicates a regional openness to foreign
+investments, which is crucial for future economic stability and growth.
+However, like others, this report does not fully capture the nuanced
+shifts towards high-tech and green technology sectors, crucial for
+understanding the future of regional economic landscapes.
+
+**Research Gap**
+
+The existing literature provides a comprehensive baseline but leaves a
+crucial area underexplored: the specific sectors within frontier
+technologies now prioritized in Chinese investments. There is a notable
+deficit in detailed quantitative analysis tracking this realignment
+towards sustainable technologies, which is essential to elucidate the
+strategic priorities of Chinese policymakers and the potential
+developmental trajectories for Latin America.
+
+**Research Question**
+
+This study seeks to address this gap by asking: Within the frontier
+technology sectors, which specific technologies or industries are
+witnessing the most significant shifts in Chinese investment attention?
+This question aims to uncover the distribution and scale of these
+investments, with a particular focus on renewable energies.
+
+**Building on Earlier Contributions**
+
+By leveraging quantitative data on investment flows, this analysis will
+extend previous scholarly efforts, offering a nuanced understanding of
+investment pattern shifts before and after 2020. It will elucidate how
+these changes correlate with China's strategic focus on green
+technologies and sustainable development, providing a precise assessment
+of evolving investment priorities in response to global economic and
+environmental challenges
+
+**Conclusion of Introduction**
+
+Through quantitative mapping of investment flows, this study will
+enhance our understanding of the strategic shifts in Chinese investment
+practices in Latin America, offering valuable insights into the broader
+implications for technology transfer, economic development, and
+sustainability in the region. This work aims not only to fill a
+significant gap in academic literature but also to provide data-driven
+insights that can inform policymakers and stakeholders shaping the
+future of international investments in technology and green energy.
+
+## **Theory and Hypothesis**
+
+**Hypothesis**
+
+As China amplifies its commitment to sustainable development under the
+Belt and Road Initiative, it is hypothesized that the proportion of
+Chinese investments directed towards the renewable energy sector in
+Latin America will significantly increase post-2020, relative to other
+sectors. This hypothesis predicts a causal relationship where China’s
+intensified policy focus on green technologies causes an increase in
+directed investments into Latin America's renewable energy sector.
+
+**Rationale**
+
+The strategic reorientation towards sustainable development and green
+technologies in China, particularly under the Belt and Road Initiative,
+signifies a confluence of economic, political, and environmental
+considerations that underscore a global pivot towards sustainability.
+This shift is evidenced by several pivotal policies and announcements:
+
+-   According to @cgep2020, **the 14th Five-Year Plan (2021-2025)**
+    outlines comprehensive integration of sustainable practices and
+    green technologies, setting the stage for a deeper commitment to
+    renewable energy investments globally, including in Latin America.
+-   **The Clean Energy Consumption Action Plan (2018)**, as noted by the
+    same source, established clear targets for reducing reliance on
+    traditional energy sources and enhancing the integration of
+    renewable energies by 2020, emphasizing the grid adaptation to
+    handle renewable energy surges.
+-   **Xi Jinping’s 2020 Announcement**: At the U.N. General Assembly,
+    President Xi Jinping’s declaration of China’s carbon neutrality goal
+    by 2060 marked a significant policy shift, reinforcing the country’s
+    dedication to ramping up investments in renewable
+    technologies(@yale2020).
+
+These strategic policy directives have not only provided a clear
+framework for investment but also created favorable conditions for
+increasing Chinese investments in Latin America’s renewable sectors such
+as solar, wind, and hydroelectric power. This region, rich in renewable
+resources and political alignment with China’s green ambitions, presents
+an ideal landscape for these investments. The expected result is a
+substantial increase in renewable energy investments post-2020, driven
+by both China's internal economic restructuring goals towards high-tech
+and sustainable industries and its aim to fulfill global environmental
+commitments.
+
+**Predicted Outcomes**
+
+The hypothesis posits that these policy-driven investments will catalyze
+a broader transition towards renewable energy sources in Latin America,
+enhancing China’s geopolitical leverage and fulfilling its international
+sustainability objectives. This transition is expected to not only align
+with China’s strategic economic interests but also accelerate the
+region's shift towards sustainable energy sources, fostering deeper
+bilateral ties through shared environmental and economic sustainability
+goals.
+
+This hypothesis is falsifiable as it can be tested by analyzing
+investment data post-2020 to determine if there is a statistically
+significant increase in Chinese investments in the renewable energy
+sector of Latin America compared to other sectors. If such a trend is
+not observed, the hypothesis would be considered falsified.
+
+## **Research Design**
+
+### **Data**
+
+In our analysis of China's investment trajectory in Latin America, we
+have leveraged the dataset obtained from the “China Global Investment
+Tracker,” developed by the American Enterprise Institute. This dataset,
+with particular focus on South America, is a curated extract from the
+broader "China-Global-Investment-Tracker-2023-Fall.xlsx" file. It
+provides detailed insights into China’s outbound investments,
+spotlighting significant transactions across various sectors from 2005
+onwards.
+
+**Variables for Analysis:**
+
+-   **Year**: As a pivotal variable, 'Year' demarcates the timeline,
+    enabling us to delineate investment trends into two distinct epochs:
+    pre-2020 and post-2020. This temporal distinction is vital for
+    evaluating our hypothesis concerning the post-2020 investment
+    landscape.
+
+-   **Investment Quantity (in Millions)**: This quantitative variable
+    measures the monetary magnitude of investments, expressed in
+    millions. By assessing this variable, we can gauge the investment
+    volume funneled into different sectors and observe any shifts in
+    China's investment focus over time.
+
+-   **Sector**: This categorical variable classifies the areas of
+    investment, such as Energy, Technology, Agriculture, and Metals,
+    among others. In alignment with our hypothesis, the analysis zeroes
+    in on the Energy sector—especially renewable energy—contrasting its
+    share of investment with that of other sectors.
+
+-   **Country**: This locational variable indicates the Latin American
+    recipient of the investment. It provides a geographical dimension to
+    the investment data, allowing for a nuanced regional analysis of
+    trends.
+
+**Data Source:**
+
+The dataset originates from the comprehensive "China Global Investment
+Tracker" database, which managed by the American Enterprise Institute
+(AEI) and the Heritage Foundation, aggregates extensive data on China’s
+global investments and construction activities. Initiated in 2005, this
+dataset includes transactions across a broad spectrum of industries like
+energy, technology, and transportation. It covers both large
+transactions and instances where investments have faced challenges. The
+data compilation involves recording each significant transaction
+specifying the amount, the Chinese parent company involved, the host
+country, and the sector. This dataset is updated regularly, ensuring it
+provides a comprehensive view of China's international investment
+patterns and trends. The version employed in this analysis has been
+tailored to emphasize South American investments and is structured to
+shed light on sector-specific investment trends within this geographic
+domain.
+
+**Unit of Analysis:**
+
+In the dataset I am working with, each row represents an investment
+transaction categorized by sector and country for a specific year. This
+approach allows for an analysis that captures trends over time within
+various sectors and regions. When mentioning units such as 'pre-2020'
+and 'post-2020', these are derived from splitting the data based on the
+year of investment to examine trends before and after 2020, providing a
+temporal distinction that is crucial for evaluating the impact of
+China's shifting investment strategies.
+
+**Sample:**
+
+The dataset encompasses 2160 records, encapsulating transactions across
+various sectors in South American nations, spanning the years 2005 to
+2023. The analytical spotlight is trained on discerning investment
+patterns within the energy sector post-2020, in pursuit of evidence
+supporting the hypothesis.    
 
 ```{r}
-1 + 1
+# Prepare and clean the data
+aligned_data <- investment_data_south_america %>%
+  fill(Country, .direction = "down") %>%
+  filter(!is.na(Sector)) %>%
+  pivot_longer(
+    cols = starts_with("20"),
+    names_to = "Year",
+    values_to = "Investment Quantity")
+
+# Convert Year to a numeric type to facilitate comparison
+aligned_data <- aligned_data %>%
+  mutate(Year = as.numeric(Year))
+
+# Create a new variable for time period based on year
+aligned_data <- aligned_data %>%
+  mutate(Time_Period = if_else(Year >= 2020, "Post-2020", "Pre-2020"))
+
+# Calculate mean, min, and max for each Sector grouped by Time_Period
+sector_time_analysis <- aligned_data %>%
+  group_by(Sector, Time_Period) %>%
+  summarise(
+    Mean_Investment = mean(`Investment Quantity`, na.rm = TRUE),
+    Min_Investment = min(`Investment Quantity`, na.rm = TRUE),
+    Max_Investment = max(`Investment Quantity`, na.rm = TRUE),
+    SD_Investment = sd(`Investment Quantity`, na.rm = TRUE),
+    .groups = 'drop'
+  )
+
+# Create the table using kable and kableExtra
+sector_table <- kable(sector_time_analysis, format = "html", align = 'c', 
+          caption = "Investment Analysis by Sector and Period") %>%
+  kable_styling(bootstrap_options = c("striped", "hover", "condensed", "responsive")) %>%
+  column_spec(1, bold = TRUE, color = "white", background = "#6C757D") %>%
+  column_spec(2:6, width = "100px") %>%
+  scroll_box(width = "100%", height = "500px")
+
+# Print the table
+sector_table
 ```
+
+```{r}
+# Create 'long_data' from 'aligned_data' with necessary transformations
+long_data <- aligned_data %>%
+  mutate(Year = as.numeric(Year),
+         Period = if_else(Year >= 2020, "Post-2020", "Pre-2020"),
+         Sector = as.character(Sector)) %>%
+  # Replace "NA" or NA in Sector with "Other"
+  mutate(Sector = if_else(is.na(Sector) | Sector == "NA", "Other", Sector)) %>%
+  # Convert Sector to factor before the summarise step
+  mutate(Sector = factor(Sector)) %>%
+  group_by(Sector, Period) %>%
+  # Use the .groups argument to avoid the grouping message
+  summarise(Mean_Investment = mean(`Investment Quantity`, na.rm = TRUE), .groups = 'drop') 
+
+# Creating the bar graph 
+ggplot(long_data, aes(x = Sector, y = Mean_Investment, fill = Period)) +
+  geom_bar(stat = "identity", position = position_dodge(width = 0.9)) +
+  scale_fill_manual(values = c("Pre-2020" = "blue", "Post-2020" = "red")) +
+  labs(title = "Average Investment by Sector and Period",
+       x = "Sector",
+       y = "Average Investment (Millions)",
+       fill = "Period") +
+  theme_minimal() +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1))
+
+```
+
+**Figure 1: Comparative Analysis of Chinese Investment in Latin American
+Sectors Pre and Post-2020**
+
+The figure illustrates the mean investment by China in different sectors
+of Latin America, comparing the periods before and after 2020. Energy
+sector investments demonstrate a marked uptick in the post-2020 era,
+signifying a strategic shift towards renewable resources and
+technologies. Conversely, sectors such as Metals and Technology show a
+more modest increase, whereas others like Agriculture, Consumer Goods,
+and Utilities remain relatively stable or exhibit a decrease in
+investment. This pattern corroborates the hypothesis that post-2020,
+China's focus has intensively pivoted towards the energy sector within
+Latin America, potentially indicative of a broader commitment to
+sustainable development and green energy technologies.
+
+### **Main Regression Model**
+
+To rigorously test the hypothesis that post-2020, Chinese investments
+have notably increased in the Energy sector within Latin America, the
+following linear regression model will be employed:
+
+$$
+\text{Total Investment}_{ist} = \beta_0 + \beta_1 \times \text{Post2020}_{t} + \beta_2 \times \text{EnergySector}_{i} + \beta_3 \times (\text{Post2020}_{t} \times \text{EnergySector}_{i}) + \sum_{c=1}^{C-1} \gamma_c \times \text{CountryDummy}_{c} + \sum_{y=2005}^{2019} \tau_y \times \text{YearDummy}_{y} + \epsilon_{ist}
+$$
+
+Where:
+
+-   $\text{Total Investment}_{ist}$ is the total investment amount (in
+    millions) for sector $i$ in country $s$ during period $t$
+-   $\text{Post2020}_{t}$ is a dummy variable that equals 1 for the
+    period after 2020, and 0 otherwise.
+-   $\text{EnergySector}_{i}$ is a dummy variable that equals 1 if the
+    sector is Energy, and 0 otherwise.
+-   $\text{Post2020}_{t} \times \text{EnergySector}_{i}$ is an
+    interaction term to capture the differential effect on Energy sector
+    investments after 2020.
+-   $\text{CountryDummy}_{c}$ are dummy variables for each country, with
+    one country omitted to serve as the reference category.
+-   $\text{YearDummy}_{y}$ are dummy variables for each year up to 2019,
+    with 2020 and onward captured by the Post2020 variable.
+-   $\beta_0$ is the intercept, $\beta_1$ captures the overall effect of
+    the post-2020 period, $\beta_2$ represents the baseline level of
+    investment in the Energy sector, and $\beta_3$ measures the
+    additional post-2020 effect on the Energy sector.
+-   $\gamma_c$ captures country-specific fixed effects, and $\tau_y$
+    captures year-specific fixed effects.
+-   $\epsilon_{ist}$ is the error term.
+
+This revised model will enable us to test if there is a statistically
+significant shift in investments towards the energy sector in Latin
+America post-2020, as evidenced by a significant positive coefficient
+for the interaction term
+$\text{Post2020}_t \times \text{EnergySector}_i$. A statistically
+significant $\beta_3$ would support the hypothesis that there has been a
+pronounced reallocation of Chinese investments towards the energy
+sector, highlighting a strategic shift towards sustainability post-2020.
+
+**Justification for Covariates:**
+
+-   **Country Dummies**: Including country dummies accounts for
+    unobserved country-specific factors that influence investment, such
+    as macroeconomic policies, market size, or business climate,
+    providing a more accurate estimate of the effect of post-2020
+    changes.
+
+-   **Year Dummies**: These control for global economic trends and other
+    time-related factors that may affect investments. By controlling for
+    year-to-year variability up to 2019, we isolate the post-2020 effect
+    from other time-related influences.
+
+**Causal Relationship and Threats to Causal Interpretation**:
+
+While this model is adept at quantifying the associations between the
+post-2020 period and investment dynamics in the energy sector,
+attributing causality must be approached with caution. The complexity of
+global economic interactions means that several unobserved factors could
+confound these relationships:
+
+-   Global Commodity Prices: Variations in global energy prices, such as
+    oil, could independently affect investment decisions, irrespective
+    of any targeted policy or strategic shifts towards renewable energy.
+-   Political Stability and Policy Shifts: Both regional political
+    stability in Latin America and domestic policy changes within China
+    could influence investment patterns. These factors might coincide
+    temporally with the post-2020 period but are not directly related to
+    the observed increase in energy sector investments.
+-   Technological Innovations and Market Dynamics: The pace of
+    technological advancements and the availability of new, competitive
+    alternatives in the energy sector could also drive investments.
+    These market dynamics might be correlated with the post-2020
+    timeline yet act independently from any policy-driven investment
+    strategy.
+
+Addressing Confounders:
+
+To mitigate these potential biases, the model includes country-specific
+and year-specific fixed effects to control for unobserved heterogeneity
+that could influence investment patterns across countries and years.
+Nevertheless, the presence of other uncontrolled confounding variables
+remains a valid concern. Where feasible, the incorporation of additional
+control variables reflecting global economic conditions or the adoption
+of instrumental variable techniques, should suitable instruments be
+available, would strengthen the causal inferences drawn from this
+analysis. Robustness checks, such as sensitivity analyses, are
+recommended to validate the assumptions underpinning the model and the
+reliability of the findings.
+
+### **Empirical Extension Design**
+
+**Sectoral Comparison to Control for Technological Innovations**
+
+In assessing the strategic redirection of Chinese investments toward
+sustainable technologies in Latin America, distinguishing between
+policy-driven shifts and general technological advancements is pivotal.
+This empirical extension specifically contrasts the impact on the Energy
+sector, expected to be influenced by green policies post-2020, against
+the Technology sector, which is primarily driven by broader tech
+innovations. By focusing on these two sectors, this analysis aims to
+isolate the effects of environmental policies from general technological
+growth. This methodological approach enhances the robustness of the
+findings by controlling for external factors that could otherwise
+confound the results, thereby providing a clearer picture of how policy
+changes directly affect sector-specific investments. This refined focus
+ensures a more precise evaluation of policy impacts, strengthening the
+validity of the conclusions drawn regarding China's investment strategy
+shifts.
+
+1.  **Treatment Group**: Energy sector (expected to be influenced by
+    green policy shifts and technological innovations).
+
+2.  **Control Group**: Technology sector (expected to be influenced
+    mainly by general technological innovations and less by green policy
+    shifts).
+
+By using the Technology sector, which also experiences rapid
+technological changes but is less directly targeted by green
+energypolicies, I can control for the impact of general technological
+advancements across sectors.
+
+#### **Revised Difference-in-Differences Model Specification:**
+
+$$
+\text{Total Investment}_{it} = \beta_0 + \beta_1 \times \text{Post2020}_{t} + \beta_2 \times \text{EnergySector}_{i} + \beta_3 \times (\text{Post2020}_{t} \times \text{EnergySector}_{i}) + \sum_{c=1}^{C-1} \gamma_c \times \text{CountryDummy}_{c} + \sum_{y=2005}^{2019} \tau_y \times \text{YearDummy}_{y} + \epsilon_{it}
+$$
+
+Where:
+
+-   $\text{Total Investment}_{it}$ is the total investment amount (in
+    millions) for sector $i$ in period $t$.
+-   $\text{Post2020}_{t}$ is a dummy variable that equals 1 for years
+    after 2020, and 0 otherwise.
+-   $\text{EnergySector}_{i}$ is a dummy variable that equals 1 if the
+    sector is Energy, and 0 for Technology (control group).
+-   $\text{CountryDummy}_{c}$ and $\text{YearDummy}_{y}$: Control for
+    country-specific and year-specific effects.
+-   $\beta_0$ is the intercept, $\beta_1$ captures the overall effect of
+    the post-2020 period, $\beta_2$ represents the baseline level of
+    investment in the Energy sector, and $\beta_3$ measures the
+    additional post-2020 effect on the Energy sector.
+-   $\gamma_c$ captures country-specific fixed effects, and $\tau_y$
+    captures year-specific fixed effects.
+-   $\epsilon_{it}$ is the error term.
+
+**Justification:**
+
+-   **Control for Technological Innovations**: Since both sectors are
+    prone to technological changes, any significant difference in the
+    post-2020 investment increase in the Energy sector that exceeds what
+    is observed in the Technology sector can more confidently be
+    attributed to green energy policies rather than just technological
+    innovation.
+-   **Sector Specificity**: This approach helps isolate the effect of
+    green policy shifts from the broader technological trends that
+    affect both sectors.
+
+## **Findings**
+
+### **Main Regression Model**
+
+The regression analysis presented in this section evaluates the impact of China's intensified focus on sustainable development on investments in Latin America's renewable energy sector post-2020. The findings highlight varying magnitudes and statistical significance across key variables, suggesting nuanced effects of policy changes on investment trends. The analysis aims to substantiate the hypothesis that policy-driven incentives have significantly shaped investment patterns in the energy sector compared to others during this period.
+
+$$
+\text{Total Investment}_{ist} = \beta_0 + \beta_1 \times \text{Post2020}_{t} + \beta_2 \times \text{EnergySector}_{i} + \beta_3 \times (\text{Post2020}_{t} \times \text{EnergySector}_{i}) + \sum_{c=1}^{C-1} \gamma_c \times \text{CountryDummy}_{c} + \sum_{y=2005}^{2019} \tau_y \times \text{YearDummy}_{y} + \epsilon_{ist}
+$$
+
+```{r}
+# Assuming 'aligned_data' contains 'Country', 'Sector', 'Year', and 'Investment Quantity'
+# Add necessary mutations
+short_data <- aligned_data %>%
+  mutate(
+    Year = as.numeric(Year),  # Convert Year to numeric
+    Post2020 = if_else(Year >= 2020, 1, 0),  # Create Post2020 dummy
+    EnergySector = if_else(Sector == "Energy", 1, 0),  # Create EnergySector dummy
+    Country = as.factor(Country)  # Convert Country to factor
+  ) %>%
+  group_by(Sector, Country, Time_Period, Post2020, EnergySector, Year) %>%  # Include new dummies in grouping
+  summarise(Total_Investment = sum(`Investment Quantity`, na.rm = TRUE), .groups = 'drop')
+
+# Now, fit the linear model including the interaction term between Post2020 and EnergySector
+# and also include country and year dummies
+model <- lm(Total_Investment ~ Post2020 * EnergySector + Country + as.factor(Year), data = short_data)
+
+# Print the regression results with modelsummary
+modelsummary(model, statistic = "std.error", gof_omit = "Observations|Residual",
+             coef_map = c("Post2020" = "Post 2020", "EnergySector" = "Energy Sector", 
+                          "Post2020:EnergySector" = "Interaction: Post2020 * EnergySector"))
+
+
+```
+
+In the main regression model testing the hypothesis that post-2020,
+investments in the renewable energy sector in Latin America have
+increased due to China's intensified focus on sustainable development,
+we see varied effects of the main variables.
+
+The coefficient for Post2020 is 72.319, which suggests that, on average,
+investments post-2020 increased by approximately 72 million compared to
+the pre-2020 period, though this effect alone doesn't account for the
+sector-specific increase. The EnergySector variable has a substantial
+coefficient of 452.400, indicating that the energy sector sees
+significantly higher investments than other sectors by this amount in
+millions. However, the critical interaction term Post2020 \*
+EnergySector has a smaller coefficient of 18.168, suggesting that while
+there is an increase in investment in the energy sector post-2020, it is
+relatively modest compared to the baseline level of investment in the
+energy sector.
+
+Regarding statistical significance, the standard errors associated with
+these coefficients (64.292 for Post2020, 42.168 for EnergySector, and
+91.903 for the interaction term) suggest that we should cautiously
+interpret these results. The relatively large standard error for the
+interaction term particularly calls into question the robustness of the
+observed increase in investments being directly attributable to
+post-2020 policy changes.
+
+The small coefficient of the interaction term, compared to the
+significant standalone effect of being in the energy sector, suggests
+that while the sector itself attracts more investment, the incremental
+increase after 2020 attributed directly to policy changes might not be
+as large as hypothesized. This outcome could be influenced by
+insufficient statistical power or external confounding factors such as
+global economic trends or other sector-independent shifts in investment
+practices post-2020.
+
+This analysis indicates that while the energy sector does enjoy higher
+investments, the specific hypothesis that post-2020 policies have driven
+a significant increase in investments may need further investigation
+with potentially more data or a refined model to account for additional
+confounding variables.
+
+```{r}
+
+# Prepare the data
+plot_data <- short_data %>%
+  mutate(SectorType = if_else(Sector == "Energy", "Energy", "Other")) %>%
+  group_by(Year, SectorType, Post2020) %>%
+  summarise(Total_Investment = sum(Total_Investment), .groups = 'drop')
+
+# Create the faceted line chart
+ggplot(plot_data, aes(x = Year, y = Total_Investment, color = SectorType, group = SectorType)) +
+  geom_line(size = 1.2) +
+  facet_wrap(~Post2020, scales = "free_y", labeller = label_both) +
+  scale_color_manual(values = c("Energy" = "red", "Other" = "blue")) +
+  labs(title = "Investment Trends by Sector Over Time",
+       subtitle = "Comparison of total investments in Energy vs Other sectors",
+       x = "Year",
+       y = "Total Investment (Millions)",
+       color = "Sector Type") +
+  theme_minimal() +
+  theme(text = element_text(size = 12),
+        plot.title = element_text(face = "bold", size = 14),
+        axis.title = element_text(size = 12))
+```
+
+**Figure 2**: **Comparative Analysis of Chinese Investment in Latin
+American Energy Sectors V Others Pre and Post-2020**
+
+The graph illustrates the trends in total investments within the Energy
+sector compared to other sectors over time, segmented into pre- and
+post-2020 periods. We can first note the falling trend of Chinese
+Investment in Latin America as state stated in the introduction.
+However, in spite of both the Energy sector and other sectors showing
+fluctuations before 2020, investments in the Energy sector does seem to
+surge distinctly after 2020, aligning with the hypothesized increase due
+to China's intensified focus on sustainable technologies under the Belt
+and Road Initiative. Therefore this visual evidence suggests a
+significant shift towards the Energy sector post-2020, supporting the
+hypothesis that Chinese investments have been increasingly directed
+towards renewable energy, potentially influenced by policy initiatives
+aimed at promoting sustainable development
+
+### **Empirical Extension**
+
+#### **Sectoral Comparison to Control for Technological Innovations**
+
+The empirical extension section examines the differential impacts on the Energy and Technology sectors to discern the influence of policy-driven shifts versus general technological advancements in Latin America post-2020. Analyzing the refined interaction effects and sector-specific investment trends, this analysis provides deeper insights into how policy initiatives under China's sustainable development focus have distinctly targeted the energy sector, aiming to isolate these influences from broader technological growth.
+
+$$
+\text{Total Investment}_{it} = \beta_0 + \beta_1 \times \text{Post2020}_{t} + \beta_2 \times \text{EnergySector}_{i} + \beta_3 \times (\text{Post2020}_{t} \times \text{EnergySector}_{i}) + \sum_{c=1}^{C-1} \gamma_c \times \text{CountryDummy}_{c} + \sum_{y=2005}^{2019} \tau_y \times \text{YearDummy}_{y} + \epsilon_{it}
+$$
+
+```{r}
+extension_data <- aligned_data %>%
+  filter(Sector %in% c("Energy", "Technology")) %>%
+  mutate(
+    Year = as.numeric(Year),
+    Post2020 = if_else(Year >= 2020, 1, 0),
+    EnergySector = if_else(Sector == "Energy", 1, 0),
+    TechnologySector = if_else(Sector == "Technology", 1, 0),
+    Country = as.factor(Country)
+  ) %>%
+  group_by(Sector, Country, Year, Post2020, EnergySector, TechnologySector) %>%
+  summarise(Total_Investment = sum(`Investment Quantity`, na.rm = TRUE), .groups = 'drop')
+
+# Fit the linear model for the empirical extension, including all main effects and interactions
+extension_model <- lm(Total_Investment ~ Post2020 + EnergySector + TechnologySector +  Post2020:EnergySector + Post2020:TechnologySector + Country + as.factor(Year), data = extension_data)
+
+# Print the regression results with explicit naming for clarity
+modelsummary(extension_model, statistic = "std.error", gof_omit = "Observations|Residual",
+             coef_map = c("Post2020" = "Post 2020", 
+                          "EnergySector" = "Energy Sector",
+                          "TechnologySector" = "Technology Sector",
+                          "Post2020:EnergySector" = "Interaction: Post 2020 * Energy Sector",
+                          "Post2020:TechnologySector" = "Interaction: Post 2020 * Technology Sector"))
+
+
+```
+The empirical extension model results reveal that the coefficient for the "Post 2020" period is 208.292, while for the "Energy Sector" it stands at 475.333. The interaction term between "Post 2020" and the "Energy Sector" shows a coefficient of 31.417. These magnitudes suggest that investments in the energy sector post-2020 are positively affected, yet the small coefficient of the interaction term indicates a less pronounced synergistic effect than expected.
+
+However, the large standard errors, particularly for the interaction term (253.214), suggest these coefficients are not statistically significant. This implies there is substantial uncertainty about the magnitude of these effects. The lack of statistical significance could be attributed to insufficient statistical power or high variability in the investment data. It's also possible that external factors or noise in the data could be overshadowing the true effects of policy shifts on investment behaviors.
+
+The absence of significance despite large coefficients might indicate that while there is a general trend of increasing investments in the energy sector, attributing this increase directly to post-2020 policy changes specifically targeting the energy sector over the technology sector (which also sees significant technological investments) is not straightforward. More detailed data or a larger sample size might be required to conclusively isolate the effects of green energy policies from general technological advancements and other confounding factors. This result highlights the challenges in distinguishing policy impacts in complex economic environments where multiple factors influence investment decisions.
+
+
+```{r}
+vis_data <- extension_data %>%
+  filter(Sector %in% c("Energy", "Technology")) %>%
+  mutate(SectorType = if_else(Sector == "Energy", "Energy", "Other Technology"))
+
+# Create the line plot
+ggplot(vis_data, aes(x = Year, y = Total_Investment, color = SectorType, group = SectorType)) +
+  geom_line() +
+  facet_wrap(~Post2020, scales = "free_y") +
+  labs(title = "Investment Trends by Sector Over Time",
+       subtitle = "Comparison of total investments in Energy vs Technology sectors",
+       x = "Year",
+       y = "Total Investment (Millions)",
+       color = "Sector Type") +
+  theme_minimal() +
+  scale_color_manual(values = c("Energy" = "red", "Other Technology" = "blue"))
+```
+
+**Figure 3**: **Comparative Analysis of Chinese Investment in Latin
+American Energy Sectors V Technology Sector Pre and Post-2020**
+
+The graph vividly illustrates the investment trends in the Energy and Technology sectors in Latin America, highlighting the differential impact of China's policy focus on sustainable technologies post-2020. Before 2020, investments in both sectors show fluctuations, with Energy occasionally outpacing Technology. However, post-2020, there is a pronounced surge in investments within the Energy sector, aligning with China's intensified emphasis on green technologies. This contrast is stark against the relatively stable investment patterns observed in the Technology sector, which, while significant, do not exhibit a comparable increase.
+
+This visual representation supports the hypothesis that the shift in Chinese investment towards renewable energies is not merely a function of broader technological advancements but is significantly driven by deliberate policy initiatives aimed at sustainable development. The distinction in investment trends post-2020 substantiates the idea that policy changes have a direct and robust impact on the Energy sector, thereby validating the effectiveness of policy-driven shifts towards sustainable investment practices, as opposed to general technological growth observed in the Technology sector.
+
+## **Discussion and Policy Implications**
+
+The research project investigating the effects of China's focus on sustainable development on investment patterns in Latin America provides nuanced insights but leaves some questions unanswered due to statistical limitations. The findings from the main regression model suggest an increase in investments post-2020, particularly within the energy sector, which aligns with China's green initiatives under the Belt and Road Initiative. However, the relatively modest size of the interaction term between post-2020 years and the energy sector, combined with its large standard error, indicates that while investments have increased, the effect is not as strong or as directly attributable to policy changes as hypothesized.
+
+The empirical extension, contrasting the energy and technology sectors, provides additional context. It suggests that the increase in energy sector investments post-2020 might not be exclusively due to green policies but could also be influenced by overarching technological advancements that also impact the technology sector. The large standard errors here further suggest high variability and potential confounding factors affecting the investment data.
+
+These findings underscore the complexities of attributing investment trends to specific policy initiatives in the dynamic context of global finance and economic development. Although there is evidence suggesting a policy impact, the conclusive power of these results is limited by statistical significance issues, suggesting the need for more robust data or alternative research methodologies that might include longer time spans or detailed sector-specific analyses.
+
+#### **Policy Implications**
+
+Reinforcement of Green Policies: The data supports the continuation and possibly the intensification of policies aimed at encouraging sustainable development investments. Policymakers could consider enhancing incentives for foreign investments in the renewable energy sector in Latin America.
+
+Broader Policy Scope: Given the intertwined effects of technological advancements and policy initiatives, policies should also address the broader infrastructure and innovation ecosystem to fully leverage technological growth alongside green investments.
+
+Data and Research Investment: To better understand and harness these trends, investing in comprehensive data collection and more granular research could be crucial. This would help isolate the effects of specific policies and understand the broader economic impacts.
+
+Stakeholder Engagement: Engaging local stakeholders in Latin America to tailor policies that address both regional ambitions and the strategic goals of investors like China could enhance the effectiveness of these investments.
+
+Future Research: Future studies should explore the causal pathways in greater depth, perhaps by employing methodologies like instrumental variables that can handle endogeneity more robustly. Additionally, case studies or qualitative analyses might provide insights into the micro-mechanisms through which policies affect sector-specific investments.
+
+In conclusion, while the results provide some support for the hypothesis that China’s green policies have positively influenced investments in renewable energy in Latin America, the evidence is not robust enough to definitively state that policy changes alone drove these trends. Further research and more detailed data are required to clarify these dynamics and to guide policy formulation and investment strategies effectively.
+
+## **References**
+
+::: {#refs}
+:::

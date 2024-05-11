@@ -1,9 +1,7 @@
 ---
-title: "About"
+title: "About Me"
 ---
 
-About this site
+Hello, I’m Martin!
 
-```{r}
-1 + 1
-```
+ As a French/American graduate from the University of Pennsylvania, my academic pursuits in policy, international development, and entrepreneurship have deeply influenced my career trajectory. I am passionately committed to leveraging technology for impactful innovations in sectors that are pivotal for human development, such as healthcare, energy, and education. My background provides me with a unique perspective that blends rigorous policy analysis with the dynamic pace of technological innovation, enabling me to contribute meaningfully to transformative projects that aim to address some of the most pressing global challenges.
